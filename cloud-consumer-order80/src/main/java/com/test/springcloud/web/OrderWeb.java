@@ -14,7 +14,10 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderWeb {
 
-    public static final String payment_URl = "http://localhost:8001";
+//    public static final String payment_URl = "http://localhost:8001";
+
+    //调用的服务是集群时,就需要使用服务名称了,进行负载均衡
+    public static final String payment_URl = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;

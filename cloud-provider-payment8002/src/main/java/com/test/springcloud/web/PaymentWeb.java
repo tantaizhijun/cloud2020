@@ -2,10 +2,11 @@ package com.test.springcloud.web;
 
 import com.test.springcloud.entities.Payment;
 import com.test.springcloud.entities.ResultData;
-import com.test.springcloud.service.PaymentService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import com.test.springcloud.service.PaymentService;
 
 import javax.annotation.Resource;
 
@@ -25,7 +26,7 @@ public class PaymentWeb {
     public ResultData create(@RequestBody Payment payment){
         Long id = paymentService.create(payment);
         if(id>0) {
-            return new ResultData(200,"保存成功,server port:" + serverPort,id);
+            return new ResultData(200,"保存成功,server port:"+serverPort,id);
         }
         return new ResultData(-1,"保存失败");
     }
