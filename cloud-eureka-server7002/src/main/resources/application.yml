@@ -1,13 +1,13 @@
 server:
-  port: 7001
+  port: 7002
 spring:
   application:
     name: cloud-eureka-service
 eureka:
   instance:
-    # eureka服务端的实例名称  单机版可以用localhost,集群版就要有自己的地址了
+    # eureka服务端的实例名称,单机版使用localhost, 集群版使用:eureka7002.com
 #    hostname: localhost
-    hostname: eureka7001.com
+    hostname: eureka7002.com
 
     # Eureka客户端向服务端发送心跳的时间间隔,单位为秒(默认是30秒)
 #    lease-renewal-interval-in-seconds: 1
@@ -17,6 +17,7 @@ eureka:
     # 禁用自我保护,保证不可用服务被及时删除
     enable-self-preservation: true
     eviction-interval-timer-in-ms: 2000
+
   client:
     # false表示不向注册中心注册自己
     register-with-eureka: false
@@ -25,6 +26,5 @@ eureka:
     service-url:
       # 设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址
 #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-      # 两个注册中心相互注册,
-      defaultZone: http://eureka7002.com:7002/eureka/
+      # 服务注册中心相互注册
+      defaultZone: http://eureka7001.com:7001/eureka/
