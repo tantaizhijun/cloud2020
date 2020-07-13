@@ -8,6 +8,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class ApplicationConfig {
 
+
+    //netflix-eureka引入时自带引入netflix-ribbon, 因此可以用 LoadBalanced
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(){

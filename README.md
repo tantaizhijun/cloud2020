@@ -12,10 +12,18 @@
 7. payment增加集群节点8002, order80调用集群服务(负载均衡),对RestTemplate增加负载均衡功能
 
 --zookeeper
-1. payment8004注册进`zookeeper单机版`注册中心,(没有进行外部调用测试)
-2. orderZK80注册进zk单机版,并调用payment8004
+8. payment8004注册进`zookeeper单机版`注册中心,(没有进行外部调用测试)
+9. orderZK80注册进zk单机版,并调用payment8004
 
 --consul
 分布式的服务发现和配置管理
-1. payment8006注册进consul
+10. payment8006注册进consul
+11. consul order80注册进consul, 并调用payment8006
+
+
+
+
+
+#服务调用
+order80 --> payment8001/8002  | eureka7001/7002
 
