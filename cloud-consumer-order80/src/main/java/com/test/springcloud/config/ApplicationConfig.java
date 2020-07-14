@@ -11,7 +11,7 @@ public class ApplicationConfig {
 
     //netflix-eureka引入时自带引入netflix-ribbon, 因此可以用 LoadBalanced
     @Bean
-    @LoadBalanced
+//    @LoadBalanced  //使用自定义的负载均衡策略
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }

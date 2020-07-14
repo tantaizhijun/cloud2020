@@ -58,8 +58,12 @@ public class PaymentWeb {
             System.out.println(e.getInstanceId() + ":" + e.getHost() + ":" + e.getPort() +":"+e.getUri());
         });
         return this.discoveryClient;
-
-
     }
 
+
+    @GetMapping(value = "/lb")
+    public String getPaymentLB(){
+        return serverPort;
+
+    }
 }

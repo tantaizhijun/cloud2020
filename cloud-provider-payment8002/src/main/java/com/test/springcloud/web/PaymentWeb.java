@@ -39,4 +39,10 @@ public class PaymentWeb {
         }
         return new ResultData(200,"查询成功,server port:"+serverPort,payment);
     }
+
+    @GetMapping(value = "/lb")
+    public String getPaymentLB(){
+        return serverPort;
+
+    }
 }
