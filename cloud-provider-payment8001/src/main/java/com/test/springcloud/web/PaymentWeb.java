@@ -66,4 +66,17 @@ public class PaymentWeb {
         return serverPort;
 
     }
+
+    //故意超时测试
+    @GetMapping(value = "/feign/timeout")
+    public String getPaymentTimeout(){
+        try {
+            Thread.sleep(3000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return serverPort;
+
+    }
+
 }

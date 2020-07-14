@@ -7,3 +7,8 @@ eureka:
     service-url:
 #      集群版服务注册地址
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+ribbon:
+#  指的是建立连接所用的 适用于网络状况正常的情况下,两端链接所用的时间
+  ReadTimeout: 5000
+#  指的是连接建立后,从服务端获取资源所用的时间
+  ConnectTimeout: 5000
