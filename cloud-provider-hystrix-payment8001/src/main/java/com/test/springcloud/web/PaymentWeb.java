@@ -25,6 +25,7 @@ public class PaymentWeb {
 
     @GetMapping(value = "/hystrix/ok/{id}")
     public String get(@PathVariable("id") Integer id){
+        log.info("00000");
         return paymentService.paymentInfo_ok(id);
     }
 
