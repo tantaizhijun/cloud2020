@@ -1,5 +1,6 @@
 package com.test.springcloud.web;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.test.springcloud.service.PaymentHystrixService;
@@ -12,14 +13,17 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j
+@DefaultProperties(defaultFallback = "globalTimeoutFallback")
 public class OrderHystrixFeignWeb {
 
     @Resource
     private PaymentHystrixService paymentHystrixService;
 
+    @HystrixCommand
     @GetMapping(value = "/consumer/payment/hystrix/ok/{id}")
     public String getPaymentById(@PathVariable("id") Integer id){
         log.info("feign--hystrixOk");
+        int i= 10/0;
         return paymentHystrixService.hystrixOk(id);
     }
 
@@ -27,6 +31,7 @@ public class OrderHystrixFeignWeb {
     @HystrixCommand(fallbackMethod = "consumerTimeoutFallback",commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000")
     })
+//    @HystrixCommand
     @GetMapping(value = "/consumer/payment/hystrix/timeout/{id}")
     public String getPaymentByIdTimeout(@PathVariable("id") Integer id){
         //调用超时的接口
@@ -39,6 +44,9 @@ public class OrderHystrixFeignWeb {
         return "消费者  线程池:" + Thread.currentThread().getName() +  " 超时或运行报错 handler id:" + id;
     }
 
+    public String globalTimeoutFallback(){
+        return "消费者 全局 超时或运行报错 handler ";
+    }
 
 
 
