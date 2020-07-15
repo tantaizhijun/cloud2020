@@ -14,3 +14,7 @@ ribbon:
   ReadTimeout: 5000
   #  指的是连接建立后,从服务端获取资源所用的时间
   ConnectTimeout: 5000
+
+feign:
+  hystrix:
+    enabled: true

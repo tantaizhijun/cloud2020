@@ -25,26 +25,27 @@ public class PaymentServiceImpl implements PaymentService {
      * execution.isolation.thread.timeoutInMilliseconds:线程超时时间3秒钟
      */
     @HystrixCommand(fallbackMethod = "timeoutHandler",commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000")
     })
     @Override
     public String paymentInfo_timeout(Integer id) {
         //报错测试
-        int i = 10/0;
+//        int i = 10/0;
 
-        //超时测试
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+//        //超时测试
+        try {
+            //TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "线程池:" + Thread.currentThread().getName() + "paymentInfo_timeout, id=" + id;
     }
 
 
     //服务降级处理方法
     public String timeoutHandler(Integer id){
-        return "线程池:" + Thread.currentThread().getName() +  " 超时或运行报错 handler id:" + id;
+        return "线程池:" + Thread.currentThread().getName() +  "服务端 超时或运行报错 handler id:" + id;
     }
 
 
