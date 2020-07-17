@@ -20,13 +20,14 @@ spring:
           predicates:
             - Path=/payment/get/** # 断言，路径相匹配的进行路由
 
-            #- After=2017-01-20T17:42:47.789-07:00[America/Denver]
-            #- Before=2017-01-20T17:42:47.789-07:00[America/Denver]
-            #- Cookie=username,zzyy
-            #- Header=X-Request-Id, \d+ #请求头要有X-Request-Id属性，并且值为正数
+            #- After=2017-01-20T17:42:47.789-07:00[America/Denver]  #再此设置之后的时间路由才启用
+            #- Before=2017-01-20T17:42:47.789-07:00[America/Denver] #在此之前有效
+            #- Cookie=username,zzyy                                 #需要携带cookie才能匹配
+            #- Header=X-Request-Id, \d+           #请求头要有X-Request-Id属性，并且值为正数才能访问
             #- Host=**.atguigu.com
-            #- Method=GET
-            #- Query=username, \d+ # 要有参数名username并且值还要是正整数才能路由
+            #- Method=GET                         #请求方式匹配
+            #- Query=username, \d+                # 要有参数名username并且值还要是正整数才能路由
+
             # 过滤
             #filters:
             #  - AddRequestHeader=X-Request-red, blue
