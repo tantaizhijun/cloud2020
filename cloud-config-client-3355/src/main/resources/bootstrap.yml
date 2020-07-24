@@ -16,3 +16,10 @@ spring:
       name: config  #配置文件名称
       profile: dev  #读取后缀名称     //3个综合:master分支config-dev.yml的配置文件读取地址:http://localhost:3344/master/config-dev.yml
       uri: http://localhost:3344  #配置中心地址
+
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
